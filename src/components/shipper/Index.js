@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import MaterialTable from "material-table";
-import { trucks } from "mock/trucks";
+import { shippments } from "mock/shippments";
 import Select from 'react-select';
 import {map} from 'lodash'
 import { Link } from "react-router-dom";
 
 const Shipper = (props) => {
   const [isOpen, setOpenModal] = useState(false);
-
-  const newArr = map(trucks.data, "truck_type_name")
-  const optionTruckTypes = newArr.map((el) => ({value: el.toLowerCase(), label: el}))
 
   return (
     <>
@@ -22,8 +19,6 @@ const Shipper = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Shipments</Nav.Link>
-              <Nav.Link href="#link">Trucks</Nav.Link>
-              <Nav.Link href="#link">Drivers</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           <Button>Logout</Button>
@@ -34,22 +29,24 @@ const Shipper = (props) => {
           <h2>Transporter Menu</h2>
         </div>
         <div className="d-flex justify-content-between my-5">
-          <Select options={optionTruckTypes} placeholder="Truck Type" />
+          <Button>Add Shipment</Button>
         </div>
         <div className="transporter-table-container">
           <MaterialTable
-            title="List of Trucks"
+            title="Shippments"
             columns={[
-              { title: "License Number", field: "license_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.license_number}</a> },
-              { title: "Truck Type", field: "truck_type_name" },
-              { title: "Plate Type", field: "plate_type_name" },
-              { title: "Production Year", field: "production_year" },
+              { title: "Shippment", field: "shippment_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.shippment_number}</a> },
+              { title: "License", field: "license_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.license_number}</a> },
+              { title: "Driver's Name", field: "driver_name" },
+              { title: 'Origin', field: 'origin'},
+              { title: 'Surabaya', field: 'destination'},
+              { title: 'Loading Date', field: 'loading_date'},
               { title: "Status", field: "status" },
             ]}
-            data={trucks.data}
+            data={shippments.data}
             actions={[
               {
-                icon: "edit",
+                icon: "dropdown",
                 tooltip: "Update Unit",
                 onClick: (event, rowData) => alert("You saved " + rowData.name),
               },
