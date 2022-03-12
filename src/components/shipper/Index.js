@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, DropdownButton, Dropdown,  Button } from "react-bootstrap";
 import MaterialTable from "material-table";
 import { shippments } from "mock/shippments";
 import Select from 'react-select';
@@ -39,14 +39,21 @@ const Shipper = (props) => {
               { title: 'Surabaya', field: 'destination'},
               { title: 'Loading Date', field: 'loading_date'},
               { title: "Status", field: "status" },
+              { title: 'Action', render: rowData => (
+                <>
+                  <DropdownButton id="dropdown-basic-button" title="Actions">
+                    <Dropdown.Item href="#/action-1">Alocated Shipments</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">On going to Origin</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">At Going</Dropdown.Item>
+                    <Dropdown.Item href="#/action-4">On going to Destination</Dropdown.Item>
+                    <Dropdown.Item href="#/action-5">At Destination</Dropdown.Item>
+                    <Dropdown.Item href="#/action-6">Completed</Dropdown.Item>
+                  </DropdownButton>
+                </>
+              )}
             ]}
             data={shippments.data}
             actions={[
-              {
-                icon: "edit",
-                tooltip: "Update Unit",
-                onClick: (event, rowData) => alert("You saved " + rowData.name),
-              },
               {
                 icon: "add",
                 tooltip: "Add New Unit",
