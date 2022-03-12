@@ -1,7 +1,7 @@
-import Shipper from "components/shipper/Index";
-import Drivers from "components/transporter/Drivers";
-import Trucks from "components/transporter/Trucks";
-import Shipments from "components/transporter/Shipments";
+import Shipper from "./components/shipper/Index";
+import Drivers from "./components/transporter/Drivers";
+import Trucks from "./components/transporter/Trucks";
+import Shipments from "./components/transporter/Shipments";
 import { AppWrapper } from "context/context";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
