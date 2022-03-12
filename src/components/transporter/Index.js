@@ -1,20 +1,71 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown, Button, Form } from "react-bootstrap";
 import MaterialTable from "material-table";
 import { trucks } from "mock/trucks";
-import Select from 'react-select';
-import {map} from 'lodash'
+import Select from "react-select";
+import { map } from "lodash";
 import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 
 const Transporter = (props) => {
   const [isOpen, setOpenModal] = useState(false);
 
-  const newArr = map(trucks.data, "truck_type_name")
-  const optionTruckTypes = newArr.map((el) => ({value: el.toLowerCase(), label: el}))
+  const newArr = map(trucks.data, "truck_type_name");
+  const optionTruckTypes = newArr.map((el) => ({
+    value: el.toLowerCase(),
+    label: el,
+  }));
+  const handleShow = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
 
   return (
     <>
+      <Modal show={isOpen} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Unit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <form>
+              <div>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Number</Form.Label>
+                  <Form.Control  type="text" placeholder="Enter License Number" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Type</Form.Label>
+                  <Form.Control type="text" placeholder="Select License Type" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Truck Type</Form.Label>
+                  <Form.Control type="text" placeholder="Select Truck Type" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Production Year</Form.Label>
+                  <Form.Control type="text" placeholder="Enter Production Year" />
+                </Form.Group>
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Number</Form.Label>
+                  <Form.Control type="text" placeholder="Enter License Number" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Number</Form.Label>
+                  <Form.Control type="text" placeholder="Enter License Number" />
+                </Form.Group> */}
+                <div className="d-flex justify-content-end">
+                <Button variant="secondary" className="me-3" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                  Save Changes
+                </Button>
+              </div>
+              </div>
+            </form>
+          </div>
+        </Modal.Body>
+      </Modal>
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="/">LMS</Navbar.Brand>
@@ -40,7 +91,15 @@ const Transporter = (props) => {
           <MaterialTable
             title="List of Trucks"
             columns={[
-              { title: "License Number", field: "license_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.license_number}</a> },
+              {
+                title: "License Number",
+                field: "license_number",
+                render: (rowData) => (
+                  <a href={""} className="text-decoration-none">
+                    {rowData.license_number}
+                  </a>
+                ),
+              },
               { title: "Truck Type", field: "truck_type_name" },
               { title: "Plate Type", field: "plate_type_name" },
               { title: "Production Year", field: "production_year" },
@@ -51,7 +110,7 @@ const Transporter = (props) => {
               {
                 icon: "edit",
                 tooltip: "Update Unit",
-                onClick: (event, rowData) => alert("You saved " + rowData.name),
+                onClick: (event, rowData) => setOpenModal(true),
               },
               {
                 icon: "add",
