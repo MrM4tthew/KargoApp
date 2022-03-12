@@ -7,9 +7,20 @@ import Select from 'react-select';
 import {map} from 'lodash'
 import { Link } from "react-router-dom";
 import NavbarShipper from "components/layout/NavbarShipper";
+import { useDispatch, useSelector } from "react-redux";
+import {useEffect} from 'react'
+import getShipments from "redux/actions/shipments";
 
 const Shipper = (props) => {
   const [isOpen, setOpenModal] = useState(false);
+  const dispatch = useDispatch()
+  const {shipments} = useSelector((state) => state.shipments) ?? [];
+  
+  useEffect(() => {
+    dispatch(getShipments());
+  }, [])
+
+  console.log('shipments', shipments)
 
   return (
     <>
