@@ -26,8 +26,6 @@ const Shipper = (props) => {
   const dispatch = useDispatch();
   const {shipments} = useSelector((state) => state.shipments) ?? [];
 
-  console.log('shipments', shipments)
-
   const handleShow = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
   
