@@ -1,3 +1,5 @@
+import Shipper from "components/shipper/Index";
+import Transporter from "components/transporter/Index";
 import {
   Routes,
   Route,
@@ -7,6 +9,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/shipper" element={<Shipper />} />
+      <Route path="/transporter" element={<Transporter />} />
     </Routes>
   );
 }

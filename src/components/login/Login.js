@@ -1,9 +1,23 @@
-import React from "react";
-import { Container, Button} from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "styles/css/login.scss";
 
 const Login = (props) => {
-  const handleSubmit = (e) => {};
+  const [value, setValue] = useState("");
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(value === "shipper") {
+       navigate("/shipper")
+    } else {
+       navigate("/transporter")
+    }
+  };
+
   return (
     <Container fluid className="login-container p-0">
       <div className="form-container">
@@ -20,7 +34,8 @@ const Login = (props) => {
                   id="transporter"
                   name="role-position"
                   value="transporter"
-                  checked
+                  onChange={handleChange}
+                  checked={value === "transporter"}
                 />
                 <label className="ms-1" for="transporter">
                   Transporter
@@ -32,7 +47,8 @@ const Login = (props) => {
                   id="shipper"
                   name="role-position"
                   value="shipper"
-                  checked
+                  onChange={handleChange}
+                  checked={value === "shipper"}
                 />
                 <label className="ms-1" for="shipper">
                   Shipper
