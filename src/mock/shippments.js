@@ -1,0 +1,42 @@
+export const shippments = {
+    result: {
+      status: "OK",
+      code: "200",
+      message: "",
+    },
+    data: [
+      {
+        id: 1,
+        shippment_number: 'DO-722351',
+        license_number: "J 1992 CDA",
+        driver_name: "Tronton",
+        origin: 'Jakarta',
+        destination: 'Surabaya',
+        loading_date: '21 Agustus',
+        plate_type_name: "Yellow",
+        status: "Created",
+      },
+      {
+        id: 2,
+        shippment_number: 'AF-35236',
+        license_number: "B 2021 ABC",
+        driver_name: "Honda",
+        origin: 'Yogyakarta',
+        destination: 'Klaten',
+        loading_date: '18 Agustus',
+        plate_type_name: "Green",
+        status: "Created",
+      },
+      {
+        id: 3,
+        shippment_number: 'IU-53175',
+        license_number: "K 1802 FGE",
+        driver_name: "Tronton",
+        origin: 'Palembang',
+        destination: 'Jakarta',
+        loading_date: '13 Agustus',
+        plate_type_name: "Blue",
+        status: "On Going",
+      },
+    ],
+  };
