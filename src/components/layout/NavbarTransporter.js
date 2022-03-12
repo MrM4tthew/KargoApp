@@ -7,6 +7,9 @@ const NavbarTransporter = props => {
 const navigate = useNavigate();
 
   const handleLogout = (props) => navigate('/');
+  const handleClickShipments = () => navigate('/transporter/shipments');
+  const handleClickTrucks= () => navigate('/transporter/trucks');
+  const handleClickDrivers = () => navigate('/transporter/drivers');
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -15,9 +18,9 @@ const navigate = useNavigate();
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Shipments</Nav.Link>
-              <Nav.Link href="#link">Trucks</Nav.Link>
-              <Nav.Link href="#link">Drivers</Nav.Link>
+              <Button variant="outline-primary" onClick={handleClickShipments}>Shipments</Button>
+              <Button variant="outline-primary ms-4" onClick={handleClickTrucks}>Trucks</Button>
+              <Button variant="outline-primary ms-4" onClick={handleClickDrivers}>Drivers</Button>
             </Nav>
           </Navbar.Collapse>
           <Button onClick={handleLogout}>Logout</Button>
