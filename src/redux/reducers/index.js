@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 
-import shipments from "./shipments";
+import shipments from "redux/actions/shipments";
 
 export default combineReducers({ shipments })
