@@ -28,9 +28,6 @@ const Shipper = (props) => {
         <div>
           <h2>Transporter Menu</h2>
         </div>
-        <div className="d-flex justify-content-between my-5">
-          <Button>Add Shipment</Button>
-        </div>
         <div className="transporter-table-container">
           <MaterialTable
             title="Shippments"
