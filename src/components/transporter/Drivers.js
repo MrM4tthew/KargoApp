@@ -44,7 +44,7 @@ const Drivers = (props) => {
                   <Form.Label>Phone Number</Form.Label>
                   <Form.Control type="text" placeholder="Enter Phone Number" />
                 </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Truck Type</Form.Label>
                   <Form.Control type="text" placeholder="Select Truck Type" />
                 </Form.Group>
@@ -54,15 +54,15 @@ const Drivers = (props) => {
                     type="text"
                     placeholder="Enter Production Year"
                   />
-                </Form.Group> */}
-                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
                   <Form.Control type="text" placeholder="Enter License Number" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
                   <Form.Control type="text" placeholder="Enter License Number" />
-                </Form.Group> */}
+                </Form.Group>
                 <div className="d-flex justify-content-end">
                   <Button
                     variant="secondary"
