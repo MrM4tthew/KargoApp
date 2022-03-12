@@ -1,6 +1,5 @@
 import Shipper from "components/shipper/Index";
 import Drivers from "components/transporter/Drivers";
-import Transporter from "components/transporter/Index";
 import Trucks from "components/transporter/Trucks";
 import Shipments from "components/transporter/Shipments";
 import { AppWrapper } from "context/context";

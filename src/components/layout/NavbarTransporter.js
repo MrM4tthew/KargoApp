@@ -2,11 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Navbar, Container, Nav, NavDropdown, Button, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
+import { Success } from 'utils/alert';
 
 const NavbarTransporter = props => {
 const navigate = useNavigate();
 
-  const handleLogout = (props) => navigate('/');
+  const handleLogout = () =>{ 
+      Success("You have been logout!")
+      navigate('/')
+    };
   const handleClickShipments = () => navigate('/transporter/shipments');
   const handleClickTrucks= () => navigate('/transporter/trucks');
   const handleClickDrivers = () => navigate('/transporter/drivers');

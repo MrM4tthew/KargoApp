@@ -31,7 +31,7 @@ const Drivers = (props) => {
     <>
       <Modal show={isOpen} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Unit</Modal.Title>
+          <Modal.Title>Add New Driver</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -90,7 +90,7 @@ const Drivers = (props) => {
             <h2>Transporter Menu</h2>
           </div>
           <div className="d-flex justify-content-between my-5">
-            <Select options={optionTruckTypes} placeholder="Truck Type" />
+            {/* <Select options={optionTruckTypes} placeholder="Truck Type" /> */}
           </div>
           <div className="transporter-table-container">
             <MaterialTable
