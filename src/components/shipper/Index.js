@@ -32,8 +32,8 @@ const Shipper = (props) => {
           <MaterialTable
             title="Shippments"
             columns={[
-              { title: "Shippment", field: "shippment_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.shippment_number}</a> },
-              { title: "License", field: "license_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.license_number}</a> },
+              { title: "Shippment", field: "shippment_number", },
+              { title: "License", field: "license_number", },
               { title: "Driver's Name", field: "driver_name" },
               { title: 'Origin', field: 'origin'},
               { title: 'Surabaya', field: 'destination'},
