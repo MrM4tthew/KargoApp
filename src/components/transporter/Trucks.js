@@ -80,7 +80,7 @@ const Trucks = props => {
                       Close
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
-                      Save Changes
+                      Save Unit
                     </Button>
                   </div>
                 </div>
@@ -119,13 +119,13 @@ const Trucks = props => {
                   {
                     icon: "edit",
                     tooltip: "Update Unit",
-                    onClick: (event, rowData) => setOpenModal(true),
+                    // onClick: (event, rowData) => setOpenModal(true),
                   },
                   {
                     icon: "add",
                     tooltip: "Add New Unit",
                     isFreeAction: true,
-                    onClick: (event) => alert("You want to add a new row"),
+                    onClick: (event, rowData) => setOpenModal(true),
                   },
                 ]}
                 options={{

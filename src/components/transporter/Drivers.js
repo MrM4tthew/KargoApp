@@ -9,7 +9,7 @@ import {
   Form,
 } from "react-bootstrap";
 import MaterialTable from "material-table";
-import { trucks } from "mock/trucks";
+import { drivers } from "mock/drivers";
 import Select from "react-select";
 import { map } from "lodash";
 import { Link } from "react-router-dom";
@@ -19,11 +19,7 @@ import NavbarTransporter from "components/layout/NavbarTransporter";
 
 const Drivers = (props) => {
   const [isOpen, setOpenModal] = useState(false);
-  const newArr = map(trucks.data, "truck_type_name");
-  const optionTruckTypes = newArr.map((el) => ({
-    value: el.toLowerCase(),
-    label: el,
-  }));
+
   const handleShow = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
@@ -38,17 +34,17 @@ const Drivers = (props) => {
             <form>
               <div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>License Number</Form.Label>
+                  <Form.Label>Driver Name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter License Number"
+                    placeholder="Enter Driver Name"
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>License Type</Form.Label>
-                  <Form.Control type="text" placeholder="Select License Type" />
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control type="text" placeholder="Enter Phone Number" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Truck Type</Form.Label>
                   <Form.Control type="text" placeholder="Select Truck Type" />
                 </Form.Group>
@@ -58,7 +54,7 @@ const Drivers = (props) => {
                     type="text"
                     placeholder="Enter Production Year"
                   />
-                </Form.Group>
+                </Form.Group> */}
                 {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
                   <Form.Control type="text" placeholder="Enter License Number" />
@@ -76,7 +72,7 @@ const Drivers = (props) => {
                     Close
                   </Button>
                   <Button variant="primary" onClick={handleClose}>
-                    Save Changes
+                    Save Driver
                   </Button>
                 </div>
               </div>
@@ -97,31 +93,30 @@ const Drivers = (props) => {
               title="List of Drivers"
               columns={[
                 {
-                  title: "License Number",
-                  field: "license_number",
+                  title: "Driver Name",
+                  field: "driver_name",
                   render: (rowData) => (
                     <a href={""} className="text-decoration-none">
-                      {rowData.license_number}
+                      {rowData.driver_name}
                     </a>
                   ),
                 },
-                { title: "Truck Type", field: "truck_type_name" },
-                { title: "Plate Type", field: "plate_type_name" },
-                { title: "Production Year", field: "production_year" },
+                { title: "Phone Number", field: "phone_number" },
+                { title: "Created At", field: "created_at" },
                 { title: "Status", field: "status" },
               ]}
-              data={trucks.data}
+              data={drivers.data}
               actions={[
                 {
                   icon: "edit",
                   tooltip: "Update Unit",
-                  onClick: (event, rowData) => setOpenModal(true),
+                  // onClick: (event, rowData) => setOpenModal(true),
                 },
                 {
                   icon: "add",
                   tooltip: "Add New Unit",
                   isFreeAction: true,
-                  onClick: (event) => alert("You want to add a new row"),
+                  onClick: (event, rowData) => setOpenModal(true),
                 },
               ]}
               options={{
