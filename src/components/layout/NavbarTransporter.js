@@ -11,6 +11,7 @@ const navigate = useNavigate();
       Success("You have been logout!")
       navigate('/')
     };
+
   const handleClickShipments = () => navigate('/transporter/shipments');
   const handleClickTrucks= () => navigate('/transporter/trucks');
   const handleClickDrivers = () => navigate('/transporter/drivers');
@@ -18,7 +19,7 @@ const navigate = useNavigate();
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">LMS</Navbar.Brand>
+          <Navbar.Brand >LMS</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
