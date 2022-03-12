@@ -23,14 +23,20 @@ import getShipments from "redux/actions/shipments";
 
 const Shipper = (props) => {
   const [isOpen, setOpenModal] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {shipments} = useSelector((state) => state.shipments) ?? [];
+
+  console.log('shipments', shipments)
 
   const handleShow = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
   
   useEffect(() => {
-    dispatch(getShipments());
+    const fetch = async () => {
+      await dispatch(getShipments());
+
+    }
+    fetch();
   }, [])
 
   return (
