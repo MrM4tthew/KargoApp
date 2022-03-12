@@ -1,0 +1,18 @@
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form-container {
+        height: 300px;
+        width: 400px;
+        border: 3px solid gray;
+        border-radius: 10px;
+
+        #title {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+    }
+}
