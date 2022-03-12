@@ -22,7 +22,7 @@ const navigate = useNavigate();
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Button variant="outline-primary" onClick={handleClickShipments}>Shipments</Button>
+              {/* <Button variant="outline-primary" onClick={handleClickShipments}>Shipments</Button> */}
               <Button variant="outline-primary ms-4" onClick={handleClickTrucks}>Trucks</Button>
               <Button variant="outline-primary ms-4" onClick={handleClickDrivers}>Drivers</Button>
             </Nav>
