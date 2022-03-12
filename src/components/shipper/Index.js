@@ -43,7 +43,7 @@ const Shipper = (props) => {
             data={shippments.data}
             actions={[
               {
-                icon: "dropdown",
+                icon: "edit",
                 tooltip: "Update Unit",
                 onClick: (event, rowData) => alert("You saved " + rowData.name),
               },
