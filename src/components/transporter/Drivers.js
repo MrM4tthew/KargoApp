@@ -7,13 +7,13 @@ import {
   NavDropdown,
   Button,
   Form,
+  Modal
 } from "react-bootstrap";
 import MaterialTable from "material-table";
 import { drivers } from "mock/drivers";
 import Select from "react-select";
 import { map } from "lodash";
 import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NavbarTransporter from "components/layout/NavbarTransporter";
 

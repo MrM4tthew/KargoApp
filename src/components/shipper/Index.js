@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Container, Nav, DropdownButton, Dropdown,  Button } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  NavDropdown,
+  Button,
+  Form,
+  Modal,
+  DropdownButton,
+  Dropdown
+} from "react-bootstrap";
 import MaterialTable from "material-table";
 import { shippments } from "mock/shippments";
 import Select from 'react-select';
@@ -15,15 +25,75 @@ const Shipper = (props) => {
   const [isOpen, setOpenModal] = useState(false);
   const dispatch = useDispatch()
   const {shipments} = useSelector((state) => state.shipments) ?? [];
+
+  const handleShow = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
   
   useEffect(() => {
     dispatch(getShipments());
   }, [])
 
-  console.log('shipments', shipments)
-
   return (
     <>
+    <Modal show={isOpen} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Shipment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <form>
+              <div>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Origin</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Search district here"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Destination</Form.Label>
+                  <Form.Control type="text" placeholder="Search district here" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Loading Date</Form.Label>
+                  <Form.Control type="date" placeholder="08/27/2021" />
+                </Form.Group>
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Truck Type</Form.Label>
+                  <Form.Control type="text" placeholder="Select Truck Type" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Production Year</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Production Year"
+                  />
+                </Form.Group> */}
+                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Number</Form.Label>
+                  <Form.Control type="text" placeholder="Enter License Number" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>License Number</Form.Label>
+                  <Form.Control type="text" placeholder="Enter License Number" />
+                </Form.Group> */}
+                <div className="d-flex justify-content-end">
+                  <Button
+                    variant="secondary"
+                    className="me-3"
+                    onClick={handleClose}
+                  >
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Save
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </Modal.Body>
+      </Modal>
       <NavbarShipper>
         <Container className="my-5">
           <div>
@@ -75,9 +145,9 @@ const Shipper = (props) => {
               actions={[
                 {
                   icon: "add",
-                  tooltip: "Add New Unit",
+                  tooltip: "Add Shipment",
                   isFreeAction: true,
-                  onClick: (event) => alert("You want to add a new row"),
+                  onClick: (event, rowData) => setOpenModal(true),
                 },
               ]}
               options={{
