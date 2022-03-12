@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Navbar, Container, Nav, NavDropdown, Button, Form } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  NavDropdown,
+  Button,
+  Form,
+} from "react-bootstrap";
 import MaterialTable from "material-table";
 import { trucks } from "mock/trucks";
 import Select from "react-select";
 import { map } from "lodash";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import NavbarTransporter from "components/layout/NavbarTransporter";
 
 const Transporter = (props) => {
   const [isOpen, setOpenModal] = useState(false);
-
-const navigate = useNavigate();
 
   const newArr = map(trucks.data, "truck_type_name");
   const optionTruckTypes = newArr.map((el) => ({
@@ -21,7 +27,6 @@ const navigate = useNavigate();
   }));
   const handleShow = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
-  const handleLogout = () => navigate('/');
 
   return (
     <>
@@ -35,7 +40,10 @@ const navigate = useNavigate();
               <div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
-                  <Form.Control  type="text" placeholder="Enter License Number" />
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter License Number"
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Type</Form.Label>
@@ -47,7 +55,10 @@ const navigate = useNavigate();
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Production Year</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Production Year" />
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Production Year"
+                  />
                 </Form.Group>
                 {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
@@ -58,77 +69,69 @@ const navigate = useNavigate();
                   <Form.Control type="text" placeholder="Enter License Number" />
                 </Form.Group> */}
                 <div className="d-flex justify-content-end">
-                <Button variant="secondary" className="me-3" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                  Save Changes
-                </Button>
-              </div>
+                  <Button
+                    variant="secondary"
+                    className="me-3"
+                    onClick={handleClose}
+                  >
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                  </Button>
+                </div>
               </div>
             </form>
           </div>
         </Modal.Body>
       </Modal>
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand href="/">LMS</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Shipments</Nav.Link>
-              <Nav.Link href="#link">Trucks</Nav.Link>
-              <Nav.Link href="#link">Drivers</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          <Button onClick={handleLogout}>Logout</Button>
+      <NavbarTransporter>
+        <Container className="my-5">
+          <div>
+            <h2>Transporter Menu</h2>
+          </div>
+          <div className="d-flex justify-content-between my-5">
+            <Select options={optionTruckTypes} placeholder="Truck Type" />
+          </div>
+          <div className="transporter-table-container">
+            <MaterialTable
+              title="List of Trucks"
+              columns={[
+                {
+                  title: "License Number",
+                  field: "license_number",
+                  render: (rowData) => (
+                    <a href={""} className="text-decoration-none">
+                      {rowData.license_number}
+                    </a>
+                  ),
+                },
+                { title: "Truck Type", field: "truck_type_name" },
+                { title: "Plate Type", field: "plate_type_name" },
+                { title: "Production Year", field: "production_year" },
+                { title: "Status", field: "status" },
+              ]}
+              data={trucks.data}
+              actions={[
+                {
+                  icon: "edit",
+                  tooltip: "Update Unit",
+                  onClick: (event, rowData) => setOpenModal(true),
+                },
+                {
+                  icon: "add",
+                  tooltip: "Add New Unit",
+                  isFreeAction: true,
+                  onClick: (event) => alert("You want to add a new row"),
+                },
+              ]}
+              options={{
+                actionsColumnIndex: -1,
+              }}
+            />
+          </div>
         </Container>
-      </Navbar>
-      <Container className="my-5">
-        <div>
-          <h2>Transporter Menu</h2>
-        </div>
-        <div className="d-flex justify-content-between my-5">
-          <Select options={optionTruckTypes} placeholder="Truck Type" />
-        </div>
-        <div className="transporter-table-container">
-          <MaterialTable
-            title="List of Trucks"
-            columns={[
-              {
-                title: "License Number",
-                field: "license_number",
-                render: (rowData) => (
-                  <a href={""} className="text-decoration-none">
-                    {rowData.license_number}
-                  </a>
-                ),
-              },
-              { title: "Truck Type", field: "truck_type_name" },
-              { title: "Plate Type", field: "plate_type_name" },
-              { title: "Production Year", field: "production_year" },
-              { title: "Status", field: "status" },
-            ]}
-            data={trucks.data}
-            actions={[
-              {
-                icon: "edit",
-                tooltip: "Update Unit",
-                onClick: (event, rowData) => setOpenModal(true),
-              },
-              {
-                icon: "add",
-                tooltip: "Add New Unit",
-                isFreeAction: true,
-                onClick: (event) => alert("You want to add a new row"),
-              },
-            ]}
-            options={{
-              actionsColumnIndex: -1,
-            }}
-          />
-        </div>
-      </Container>
+      </NavbarTransporter>
     </>
   );
 };
