@@ -14,7 +14,7 @@ const Login = (props) => {
     if(value === "shipper") {
        navigate("/shipper")
     } else {
-       navigate("/transporter")
+       navigate("/transporter/trucks")
     }
   };
 
