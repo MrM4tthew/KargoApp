@@ -25,7 +25,7 @@ export const drivers = {
         driver_name: "Ghoib",
         phone_number: "+62819122",
         created_at: "2022-02-28",
-        status: "Active",
+        status: "InActive",
       },
     ],
   };
