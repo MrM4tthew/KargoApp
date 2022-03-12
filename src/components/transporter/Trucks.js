@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Container,
@@ -16,18 +16,33 @@ import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NavbarTransporter from "components/layout/NavbarTransporter";
+import getTruck from 'redux/actions/trucks';
+import { useDispatch } from 'react-redux';
 
 const Trucks = props => {
     const [isOpen, setOpenModal] = useState(false);
+    const [detailModal, setDetailModal] = useState(null)
+    const [detailShow, setDetailShow] = useState(false)
+    const [truck, settruck] = useState(null)
 
-  const newArr = map(trucks.data, "truck_type_name");
-  const optionTruckTypes = newArr.map((el) => ({
-    value: el.toLowerCase(),
-    label: el,
-  }));
-  const handleShow = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+      dispatch(getTruck())
+    }, [truck, dispatch])
+
+    const newArr = map(trucks.data, "truck_type_name");
+    const optionTruckTypes = newArr.map((el) => ({
+      value: el.toLowerCase(),
+      label: el,
+    }));
+    const handleShow = () => setOpenModal(true);
+    const handleClose = () => setOpenModal(false);
+    
+    const handleDetail = (rowData) => {
+        setDetailShow(true)
+        setDetailModal(rowData)
+      }
     return (
       <>
         <Modal show={isOpen} onHide={handleClose}>
@@ -63,6 +78,14 @@ const Trucks = props => {
                       placeholder="Enter Production Year"
                     />
                   </Form.Group>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Label>Default file input example</Form.Label>
+                    <Form.Control type="file" />
+                  </Form.Group>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Label>Default file input example</Form.Label>
+                    <Form.Control type="file" />
+                  </Form.Group>
                   {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>License Number</Form.Label>
                   <Form.Control type="text" placeholder="Enter License Number" />
@@ -88,6 +111,16 @@ const Trucks = props => {
             </div>
           </Modal.Body>
         </Modal>
+        {/* <Modal show={detailModal} onHide={detailShow} detailModal={detailModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Detail</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>
+              {detailModal}
+            </div>
+          </Modal.Body>
+        </Modal> */}
         <NavbarTransporter>
           <Container className="my-5">
             <div>
@@ -104,7 +137,7 @@ const Trucks = props => {
                     title: "License Number",
                     field: "license_number",
                     render: (rowData) => (
-                      <a href={""} className="text-decoration-none">
+                      <a onClick={rowData => setOpenModal(true)} className="text-decoration-none">
                         {rowData.license_number}
                       </a>
                     ),
@@ -114,7 +147,7 @@ const Trucks = props => {
                   { title: "Production Year", field: "production_year" },
                   { title: "Status", field: "status" },
                 ]}
-                data={trucks.data}
+                data={trucks}
                 actions={[
                   {
                     icon: "edit",
