@@ -5,6 +5,7 @@ import MaterialTable from "material-table";
 import { trucks } from "mock/trucks";
 import Select from 'react-select';
 import {map} from 'lodash'
+import { Link } from "react-router-dom";
 
 const Transporter = (props) => {
   const [isOpen, setOpenModal] = useState(false);
@@ -39,7 +40,7 @@ const Transporter = (props) => {
           <MaterialTable
             title="List of Trucks"
             columns={[
-              { title: "License Number", field: "license_number" },
+              { title: "License Number", field: "license_number", render: rowData => <a href={""} className="text-decoration-none">{rowData.license_number}</a> },
               { title: "Truck Type", field: "truck_type_name" },
               { title: "Plate Type", field: "plate_type_name" },
               { title: "Production Year", field: "production_year" },
