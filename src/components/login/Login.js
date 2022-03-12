@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "styles/css/login.scss";
+import "../../styles/css/login.scss";
 
 const Login = (props) => {
   const [value, setValue] = useState("");

@@ -1,5 +1,5 @@
-import Shipper from "components/shipper/Index";
-import Transporter from "components/transporter/Index";
+import Shipper from "./components/shipper/Index";
+import Transporter from "./components/transporter/Index";
 import {
   Routes,
   Route,
