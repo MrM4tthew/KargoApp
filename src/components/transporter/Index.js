@@ -7,9 +7,12 @@ import Select from "react-select";
 import { map } from "lodash";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+import {useNavigate} from 'react-router-dom'
 
 const Transporter = (props) => {
   const [isOpen, setOpenModal] = useState(false);
+
+const navigate = useNavigate();
 
   const newArr = map(trucks.data, "truck_type_name");
   const optionTruckTypes = newArr.map((el) => ({
@@ -18,6 +21,7 @@ const Transporter = (props) => {
   }));
   const handleShow = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
+  const handleLogout = () => navigate('/');
 
   return (
     <>
@@ -77,7 +81,7 @@ const Transporter = (props) => {
               <Nav.Link href="#link">Drivers</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Button>Logout</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Container>
       </Navbar>
       <Container className="my-5">
